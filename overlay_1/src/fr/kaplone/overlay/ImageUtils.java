@@ -31,14 +31,14 @@ public class ImageUtils {
 	public static BufferedImage composition4Niveaux(BufferedImage fond,
 			                                        BufferedImage device,
 			                                        BufferedImage contenu,
-			                                        BufferedImage main, int posXMain, int posYMain,
+			                                        BufferedImage main, double posXMain, double posYMain,
 			                                        BufferedImage finale){
 		Graphics2D g = finale.createGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawImage(fond, 0, 0, null);
 		g.drawImage(contenu, posXContenu, posYContenu, null);
 		g.drawImage(device, posXDevice, posYDevice, null);
-		g.drawImage(main, posXMain, posYMain, null);
+		g.drawImage(main, (int)posXMain, (int)posYMain, null);
 		g.dispose();
 		
 		return finale;
