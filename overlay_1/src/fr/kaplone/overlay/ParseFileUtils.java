@@ -1,6 +1,5 @@
 package fr.kaplone.overlay;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 public class ParseFileUtils {
 	
 	
-	public static ArrayList<String> fichierVersLignes (String cheminDuFichier) throws IOException{
+	public static ArrayList<String> fileToLines (String cheminDuFichier) throws IOException{
 		ArrayList<String> toutesLesLignes = new ArrayList<String>();
 		
         Path path = Paths.get(cheminDuFichier);
@@ -35,13 +34,13 @@ public class ParseFileUtils {
 		return tousLesChamps;
 	}
 	
-	public static ArrayList<Integer> fichierVersEntiers (String fichier) throws IOException{
-		return lignesVersEntiers(fichierVersLignes( fichier));
+	public static ArrayList<Integer> fileToInteger (String fichier) throws IOException{
+		return lignesVersEntiers(fileToLines( fichier));
 	}
 	
-	public static ArrayList<Integer> fichierVersTemps(String fichier) throws IOException{
+	public static ArrayList<Integer> fileToFrameNumber(String fichier) throws IOException{
 		ArrayList<Integer> tousLesTemps = new ArrayList<Integer>();
-		ArrayList<Integer> tousLesChamps = fichierVersEntiers(fichier);
+		ArrayList<Integer> tousLesChamps = fileToInteger(fichier);
 		for (int i = 0; i < tousLesChamps.size(); i++){
 			if (i%3 == 0){
 				tousLesTemps.add(Integer.valueOf(tousLesChamps.get(i)));
@@ -50,9 +49,9 @@ public class ParseFileUtils {
 		return tousLesTemps;
 	}
 
-	public static ArrayList<Integer> fichierVersPosX(String fichier) throws IOException{
+	public static ArrayList<Integer> fileToPosX(String fichier) throws IOException{
 		ArrayList<Integer> tousLesPosX = new ArrayList<Integer>();
-		ArrayList<Integer> tousLesChamps = fichierVersEntiers(fichier);
+		ArrayList<Integer> tousLesChamps = fileToInteger(fichier);
 		for (int i = 0; i < tousLesChamps.size(); i++){
 			if (i%3 == 1){
 				tousLesPosX.add(Integer.valueOf(tousLesChamps.get(i)));
@@ -61,9 +60,9 @@ public class ParseFileUtils {
 		return tousLesPosX;
 	}
 	
-	public static ArrayList<Integer> fichierVersPosY(String fichier) throws IOException{
+	public static ArrayList<Integer> fileToPosY(String fichier) throws IOException{
 		ArrayList<Integer> tousLesPosY = new ArrayList<Integer>();
-		ArrayList<Integer> tousLesChamps = fichierVersEntiers(fichier);
+		ArrayList<Integer> tousLesChamps = fileToInteger(fichier);
 		for (int i = 0; i < tousLesChamps.size(); i++){
 			if (i%3 == 2){
 				tousLesPosY.add(Integer.valueOf(tousLesChamps.get(i)));

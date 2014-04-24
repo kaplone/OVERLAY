@@ -14,8 +14,8 @@ public class ImageUtils {
 	
 	static final int posXDevice = 0;
 	static final int posYDevice = 0;
-	static final int posXContenu = 789;
-	static final int posYContenu  = 452;
+	static final int posXContent = 789;
+	static final int posYContent  = 452;
 	
 	public static BufferedImage scale(BufferedImage bi, double scaleValue) {
         AffineTransform tx = new AffineTransform();
@@ -28,24 +28,24 @@ public class ImageUtils {
         return op.filter(bi, biNew);
 	}
 	
-	public static BufferedImage composition4Niveaux(BufferedImage fond,
+	public static BufferedImage compose4Layers(BufferedImage background,
 			                                        BufferedImage device,
-			                                        BufferedImage contenu,
-			                                        BufferedImage main, double posXMain, double posYMain,
-			                                        BufferedImage finale){
-		Graphics2D g = finale.createGraphics();
+			                                        BufferedImage content,
+			                                        BufferedImage hand, double posXMain, double posYMain,
+			                                        BufferedImage finaleComp){
+		Graphics2D g = finaleComp.createGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.drawImage(fond, 0, 0, null);
-		g.drawImage(contenu, posXContenu, posYContenu, null);
+		g.drawImage(background, 0, 0, null);
+		g.drawImage(content, posXContent, posYContent, null);
 		g.drawImage(device, posXDevice, posYDevice, null);
-		g.drawImage(main, (int)posXMain, (int)posYMain, null);
+		g.drawImage(hand, (int)posXMain, (int)posYMain, null);
 		g.dispose();
 		
-		return finale;
+		return finaleComp;
 	}
 	
-	public static void ecrireImage (BufferedImage image, File path, String nom) throws IOException{
-		ImageIO.write(image, "PNG", new File(path, nom));
+	public static void writeImage (BufferedImage image, File path, String name) throws IOException{
+		ImageIO.write(image, "PNG", new File(path, name));
 	}
 
 }

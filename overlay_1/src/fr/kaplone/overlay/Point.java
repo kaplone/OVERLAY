@@ -6,40 +6,40 @@ public class Point {
 	
 	private double coordX;
 	private double coordY;
-	private Point relatifA;
-	private int imageNumero;
+	private Point relativeTo;
+	private int imageNumber;
 	
-	final static Point origine = new Point(0, 0);
+	final static Point rootPoint = new Point(0, 0);
 
 	public Point(double coordX, double coordY, Point relatif, int num) {
 		this.coordX = coordX;
 		this.coordY = coordY;
-		this.relatifA = relatif;
-		this.imageNumero = num;
+		this.relativeTo = relatif;
+		this.imageNumber = num;
 	}
 	public Point(double coordX, double coordY) {
 		this(coordX, coordY, null, -1);
 	}
 	
-	public double grandDeltaX(Point p){
+	public double fullDeltaX(Point p){
 		return p.getCoordX() - this.coordX;
 	}
-	public double grandDeltaY(Point p){
+	public double fullDeltaY(Point p){
 		return p.getCoordY() - this.coordY;
 	}
 	
-	public double distanceAuPoint (Point p){
-		double carreDeltaX = ( this.coordX - p.getCoordX())*  (this.coordX - p.getCoordX());
-		double carreDeltaY = (this.coordY - p.getCoordY()) *  (this.coordY - p.getCoordY());
-		return Math.sqrt(carreDeltaX + carreDeltaY);
+	public double distanceToPoint (Point p){
+		double squareDeltaX = ( this.coordX - p.getCoordX())*  (this.coordX - p.getCoordX());
+		double squareDeltaY = (this.coordY - p.getCoordY()) *  (this.coordY - p.getCoordY());
+		return Math.sqrt(squareDeltaX + squareDeltaY);
 	}
 	
-	public Point doigtRelatifToOrigine(int x, int y){
-		return new Point(x - this.getCoordX( ), y - this.getCoordY(), origine, this.imageNumero);
+	public Point fingerRelativeToRootPoint(int x, int y){
+		return new Point(x - this.getCoordX( ), y - this.getCoordY(), rootPoint, this.imageNumber);
 	}
 	
-	public Point doigtRelatifToDevice(int x, int y){
-		return doigtRelatifToOrigine(x + 788, y + 451);
+	public Point fingerRelativeToDevice(int x, int y){
+		return fingerRelativeToRootPoint(x + 788, y + 451);// TODO : update with object
 	}
 
 	public double getCoordX() {
@@ -58,20 +58,20 @@ public class Point {
 		this.coordY = coordY;
 	}
 
-	public Point getRelatifA() {
-		return relatifA;
+	public Point getRelativeTo() {
+		return relativeTo;
 	}
 
-	public void setRelatifA(Point relatif) {
-		this.relatifA = relatif;
+	public void setRelativeTo(Point relatif) {
+		this.relativeTo = relatif;
 	}
 	
-	public int getImageNumero() {
-		return imageNumero;
+	public int getImageNumber() {
+		return imageNumber;
 	}
 	
-	public void setImageNumero(int imageNumero) {
-		this.imageNumero = imageNumero;
+	public void setImageNumber(int imageNumero) {
+		this.imageNumber = imageNumero;
 	}
 
 }

@@ -8,18 +8,18 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-public class Main {
+public class Principal {
 
 	public static void main(String[] args) throws IOException {
 		
-		Point p1 = new Point(300, 200);
-		Point p2 = new Point(600, 400, null, 400);
-		Point p3 = new Point(500, 900);
+		Point p1 = new Point(500, 900);
+		Point p2 = new Point(1220, 2400, null, 500);
+		Point p3 = new Point(000, 0);
 		
 		
-		Deltas D0 = Mouvement.acceleration(p1, p2, 10);
-		Deltas D1 = Mouvement.acceleration(p2, p3, 12);
-		ArrayList<Point> PP = Mouvement.deplacement(D0, p1, p2, p3, D1);
+		Deltas D0 = Displacement.acceleration(p1, p2, 20);
+		Deltas D1 = Displacement.acceleration(p2, p3, 32);
+		ArrayList<Point> PP = Displacement.deplacement(D0, p1, p2, p3, D1);
 		
 		
 		File path = new File("/home/david/TESTS_racket/move/images_source/");
@@ -38,18 +38,18 @@ public class Main {
 		
 		BufferedImage composition = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		
-		ArrayList<Integer> tousLesTemps = ParseFileUtils.fichierVersTemps("/home/david/TESTS_racket/move/ref.txt");
+		ArrayList<Integer> tousLesTemps = ParseFileUtils.fileToFrameNumber("/home/david/TESTS_racket/move/ref.txt");
 		System.out.println(tousLesTemps.get(8));
 		
-		ArrayList<Integer> tousLesPosX = ParseFileUtils.fichierVersPosX("/home/david/TESTS_racket/move/ref.txt");
+		ArrayList<Integer> tousLesPosX = ParseFileUtils.fileToPosX("/home/david/TESTS_racket/move/ref.txt");
 		System.out.println(tousLesPosX.get(8));
 		
-		List<String> frames = DiversUtils.listeTriee(new File("/home/david/TESTS_racket/move/frames_WakeApp"));
+		List<String> frames = OtherUtils.sortedList(new File("/home/david/TESTS_racket/move/frames_WakeApp"));
 		
 		Point temp;
 		
 		for (Point p : PP){
-			ImageUtils.ecrireImage(ImageUtils.composition4Niveaux(fond, device, contenu(p.getImageNumero()), main, p.getCoordX(), p.getCoordY(), composition), pathOut, String.format("test_mvt_%05d.png", p.getImageNumero()));
+			ImageUtils.writeImage(ImageUtils.compose4Layers(fond, device, contenu(p.getImageNumber()), main, p.getCoordX(), p.getCoordY(), composition), pathOut, String.format("test_mvt_%05d.png", p.getImageNumber()));
 		}
 		
 //		for (int i = 1; i < frames.size(); i++){

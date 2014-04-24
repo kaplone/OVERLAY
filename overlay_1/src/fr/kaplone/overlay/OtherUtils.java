@@ -7,15 +7,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class DiversUtils {
-
-	public static void main(String[] args) {
-		File dir = new File("/home/david/TESTS_racket/move/frames");
-		
-		listeTriee(dir);
-	}
+public class OtherUtils {
 	
-	public static List<String> listeTriee (File d){
+	public static List<String> sortedList (File d){
 		
 		String[] listDir = d.list();
 		List<String> ld = Arrays.asList(listDir);

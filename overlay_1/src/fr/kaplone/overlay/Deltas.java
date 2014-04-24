@@ -3,20 +3,22 @@ package fr.kaplone.overlay;
 import java.util.ArrayList;
 
 public class Deltas {
-	ArrayList<Double> deltas = new ArrayList<Double>();
-	double graduations;
-	public Deltas(ArrayList<Double> deltas, double d) {
+	
+	ArrayList<Double> listOfDeltas = new ArrayList<Double>();
+	double stepValue;
+	
+	public Deltas(ArrayList<Double> deltas, double stepValue) {
 		super();
-		this.deltas = deltas;
-		this.graduations = d;
+		this.listOfDeltas = deltas;
+		this.stepValue = stepValue;
 	}
-	public ArrayList<Double> getDeltas() {
-		return deltas;
+	public ArrayList<Double> getListOfDeltas() {
+		return listOfDeltas;
 	}
-	public void setDeltas(ArrayList<Double> deltas) {
-		this.deltas = deltas;
+	public void setListOfDeltas(ArrayList<Double> deltas) {
+		this.listOfDeltas = deltas;
 	}
-	public double getGraduations() {
-		return graduations;
+	public double getStepValue() {
+		return stepValue;
 	}
 }
