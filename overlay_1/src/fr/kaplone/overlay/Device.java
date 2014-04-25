@@ -2,96 +2,97 @@ package fr.kaplone.overlay;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 public class Device {
 	
-	String cheminImage;
+	String pathImage;
 	File imageFile;
-	double valeurEchelle;
+	double scaleValue;
 	
-	double[] tailleImage = new double[2];
-	double[] tailleDevice = new double[2]; 
-	double[] tailleEcran = new double[2];
+	double[] imageSize = new double[2];
+	double[] deviceSize = new double[2]; 
+	double[] screenSize = new double[2];
 	
-	public Device(String cheminImage, double valeurEchelle, double[] tailleDevice, double[] tailleEcran) {
-		this.cheminImage = cheminImage;
-		this.imageFile = new File(cheminImage);
+	public Device(String pathImage, double scaleValue, double[] tailleDevice, double[] tailleEcran) throws IOException {
+		this.pathImage = pathImage;
+		this.imageFile = new File(pathImage);
 		BufferedImage image = ImageIO.read(this.imageFile);
-		this.tailleImage = {i
-		this.valeurEchelle = valeurEchelle;
-		this.tailleImage = tailleImage;
-		this.tailleDevice = tailleDevice;
-		this.tailleEcran = tailleEcran;
+		this.imageSize[0] = image.getWidth();
+		this.imageSize[1] = image.getHeight();
+		this.scaleValue = scaleValue;
+		this.deviceSize = tailleDevice;
+		this.screenSize = tailleEcran;
 	}
 	
-	public double getLargeurImage(){
-		return this.tailleImage[0];
+	public double getImageWidth(){
+		return this.imageSize[0];
 	}
-	public double getHauteurImage(){
-		return this.tailleImage[1];
-	}
-	
-	public String getCheminImage() {
-		return cheminImage;
-	}
-
-	public void setCheminImage(String cheminImage) {
-		this.cheminImage = cheminImage;
+	public double getImageHeight(){
+		return this.imageSize[1];
 	}
 	
-	public double[] getTailleImage() {
-		return tailleImage;
+	public String getPathImage() {
+		return pathImage;
 	}
 
-	public void setTailleImage(double[] tailleImage) {
-		this.tailleImage = tailleImage;
-	}
-
-	public File getImage() {
-		return image;
-	}
-
-	public void setImage(File image) {
-		this.image = image;
-	}
-
-	public double[] getTailleDevice() {
-		return tailleDevice;
-	}
-
-	public void setTailleDevice(double[] tailleDevice) {
-		this.tailleDevice = tailleDevice;
-	}
-
-	public double getLargeurDevice(){
-		return this.tailleDevice[0];
-	}
-	public double getHauteurDevice(){
-		return this.tailleDevice[1];
+	public void setPathImage(String pathImage) {
+		this.pathImage = pathImage;
 	}
 	
-	public double[] getTailleEcran() {
-		return tailleEcran;
+	public double[] getImageSize() {
+		return imageSize;
 	}
 
-	public void setTailleEcran(double[] tailleEcran) {
-		this.tailleEcran = tailleEcran;
+	public void setImageSize(double[] imageSize) {
+		this.imageSize = imageSize;
+	}
+
+	public File getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(File imageFile) {
+		this.imageFile = imageFile;
+	}
+
+	public double[] getDeviceSize() {
+		return deviceSize;
+	}
+
+	public void setDeviceSize(double[] deviceSize) {
+		this.deviceSize = deviceSize;
+	}
+
+	public double getDeviceWidth(){
+		return this.deviceSize[0];
+	}
+	public double getDeviceHeight(){
+		return this.deviceSize[1];
 	}
 	
-	public double getLargeurEcran(){
-		return this.tailleEcran[0];
+	public double[] getScreenSize() {
+		return screenSize;
 	}
-	public double getHauteurEcran (){
-		return this.tailleEcran[1];
+
+	public void setScreenSize(double[] screenSize) {
+		this.screenSize = screenSize;
 	}
 	
-	public Device miseALEchelle(double standard){
-		double[] imageEchelle = {this.getLargeurImage() * standard, this.getHauteurImage() * standard};
-		double[] deviceEchelle = {this.getLargeurDevice() * standard, this.getHauteurDevice() * standard};
-		double[] ecranEchelle = {this.getLargeurEcran() * standard, this.getHauteurEcran() * standard};
-		return new Device(this.getCheminImage(), 0, deviceEchelle, ecranEchelle, imageEchelle);
+	public double getScreenWidth(){
+		return this.screenSize[0];
+	}
+	public double getScreenHeight (){
+		return this.screenSize[1];
+	}
+	
+	public Device scalingDevice(double standard) throws IOException{
+		double[] scaledImage = {this.getImageWidth() * standard, this.getImageHeight() * standard};
+		double[] scaledDevice = {this.getDeviceWidth() * standard, this.getDeviceHeight() * standard};
+		double[] scaledScreen = {this.getScreenWidth() * standard, this.getScreenHeight() * standard};
+		return new Device(this.getPathImage(), 0, scaledDevice, scaledScreen);
 	}
 	
 
