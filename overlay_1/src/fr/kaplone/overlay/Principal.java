@@ -38,10 +38,10 @@ public class Principal {
 		
 		BufferedImage composition = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		
-		ArrayList<Integer> tousLesTemps = ParseFileUtils.fileToFrameNumber("/home/david/TESTS_racket/move/ref.txt");
+		ArrayList<Integer> tousLesTemps = ParseFileUtils.fileToFrameNumber("refs/ref.txt");
 		System.out.println(tousLesTemps.get(8));
 		
-		ArrayList<Integer> tousLesPosX = ParseFileUtils.fileToPosX("/home/david/TESTS_racket/move/ref.txt");
+		ArrayList<Integer> tousLesPosX = ParseFileUtils.fileToPosX("refs/ref.txt");
 		System.out.println(tousLesPosX.get(8));
 		
 		List<String> frames = OtherUtils.sortedList(new File("/home/david/TESTS_racket/move/frames_WakeApp"));

@@ -1,5 +1,9 @@
 package fr.kaplone.overlay;
 
+//TODO voir  : 
+//             java.awt.geom.Point2D.Double
+//             et java.awt.geom.Point2D
+
 import java.lang.Math;
 
 public class Point {
