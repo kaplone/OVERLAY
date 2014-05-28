@@ -12,13 +12,21 @@ public class Principal {
 
 	public static void main(String[] args) throws IOException {
 		
-		Point p1 = new Point(500, 900);
-		Point p2 = new Point(1220, 2400, null, 500);
-		Point p3 = new Point(000, 0);
+		Point p1 = new Point(500, 900);              // c'est le point de départ du mouvement, (x = 500, y=900) pas de temporalité.
+		                                             // il s'agit des coordonnées sur l'écran du device
 		
+		Point p2 = new Point(1220, 2400, null, 500); // c'est le point du touch (x= 1220, y=2400)
+		                                             // null représente un argument que je ne prends pas en compte
+		                                             // 500 représente la temporalité.
+		                                             // l'image du contact sera celle numérotée 500
+		                                             // (image2_00500.png dans le répertoire frames_WakeApp)
 		
-		Deltas D0 = Displacement.acceleration(p1, p2, 20);
-		Deltas D1 = Displacement.acceleration(p2, p3, 32);
+		Point p3 = new Point(000, 0);                // c'est le point d'arrivée du mouvement, (x = 0, y=0) pas de temporalité.
+
+
+		Deltas D0 = Displacement.acceleration(p1, p2, 20); // 20 est le "coefficient d'accélération"  
+		Deltas D1 = Displacement.acceleration(p2, p3, 32); // 32 est le "coefficient d'accélération"  (plus rapide que 20)
+
 		ArrayList<Point> PP = Displacement.deplacement(D0, p1, p2, p3, D1);
 		
 		
